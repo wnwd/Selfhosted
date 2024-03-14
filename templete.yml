@@ -1,0 +1,19 @@
+version: "3"
+networks:
+  default:
+    external: true
+    name: npm_default
+services:
+  stack_name:
+    image: image:tag
+    container_name: container_name
+    restart: unless-stopped
+    # ports:
+    #   - 8080:8080
+    environment:
+      ENV1: V1
+      ENV2: V2
+      ENV3: V3
+    networks:
+      default:
+        ipv4_address: 172.20.0.11

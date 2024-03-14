@@ -1,0 +1,17 @@
+version: "3.8"
+networks:
+  default:
+    external: true
+    name: npm_default
+services:
+  vikunja:
+    image: vikunja/vikunja
+    container_name: vikunja
+    volumes:
+      - ${DOCKER_DATA}/vikunja/files:/app/vikunja/files
+      - ${DOCKER_DATA}/vikunja/conf:/etc/vikunja
+      - ${DOCKER_DATA}/vikunja/db:/db
+    restart: unless-stopped
+    networks:
+      default:
+        ipv4_address: 172.20.0.16

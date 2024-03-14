@@ -1,0 +1,19 @@
+version: "3"
+networks:
+  default:
+    external: true
+    name: npm_default
+services:
+  vaultwarden:
+    container_name: vaultwarden
+    volumes:
+      - ${DOCKER_DATA}/vaultwarden/data/:/data/
+    restart: unless-stopped
+    # ports:
+    #   - 80:80
+    image: vaultwarden/server:latest
+    environment:
+      - ADMIN_TOKEN=${ADMIN_TOKEN}
+    networks:
+      default:
+        ipv4_address: 172.20.0.21

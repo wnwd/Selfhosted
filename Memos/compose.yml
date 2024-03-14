@@ -1,0 +1,17 @@
+version: "3"
+networks:
+  default:
+    external: true
+    name: npm_default
+services:
+  memos:
+    image: ghcr.io/usememos/memos:stable
+    container_name: memos
+    volumes:
+      - ${DOCKER_HOME}/memos/data/:/var/opt/memos
+    # ports:
+    #     - '5230:5230'
+    restart: unless-stopped
+    networks:
+      default:
+        ipv4_address: 172.20.0.9

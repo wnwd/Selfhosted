@@ -1,0 +1,24 @@
+version: "3"
+networks:
+  default:
+    external: true
+    name: npm_default
+services:
+  freshrss:
+    image: freshrss/freshrss:latest
+    container_name: freshrss
+    hostname: freshrss
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+    volumes:
+      - ${DOCKER_HOME}/freshrss/data:/var/www/FreshRSS/data
+      - ${DOCKER_HOME}/freshrss/extensions:/var/www/FreshRSS/extensions
+    environment:
+      TZ: Asia/Shanghai
+      CRON_MIN: 3,33
+      TRUSTED_PROXY: 172.20.0.1/24
+    networks:
+      default:
+        ipv4_address: 172.20.0.19

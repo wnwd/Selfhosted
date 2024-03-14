@@ -1,0 +1,10 @@
+version: "3"
+services:
+  xui:
+    image: enwaiax/x-ui:latest
+    container_name: x-ui
+    volumes:
+      - ${DOCKER_DATA}/x-ui/db/:/etc/x-ui/
+      - ${DOCKER_DATA}/x-ui/cert/:/root/cert/
+    restart: unless-stopped
+    network_mode: host

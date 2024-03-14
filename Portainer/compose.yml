@@ -1,0 +1,18 @@
+version: "3"
+networks:
+  default:
+    external: true
+    name: npm_default
+services:
+  portainer:
+    image: portainer/portainer-ee:latest
+    container_name: portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${DOCKER_DATA}/portainer/data:/data
+    # ports:
+    #   - "9000:9000"
+    restart: unless-stopped
+    networks:
+      default:
+        ipv4_address: 172.20.0.3

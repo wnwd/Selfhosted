@@ -1,0 +1,29 @@
+version: "3"
+networks:
+  default:
+    external: true
+    name: npm_default
+services:
+  talebook:
+    restart: unless-stopped
+    image: talebook/talebook
+    container_name: talebook-web
+    volumes:
+      - ${DOCKER_DATA}/talebook/data:/data
+    depends_on:
+      - douban-rs-api
+    # ports:
+    #   - "8080:80"
+    #   - "8443:443"
+    networks:
+      default:
+        ipv4_address: 172.20.0.5
+  # optional, for meta plugins
+  # please set "http://douban-rs-api" in settings
+  douban-rs-api:
+    restart: unless-stopped
+    image: ghcr.io/cxfksword/douban-api-rs
+    container_name: douban-rs-api
+    networks:
+      default:
+        ipv4_address: 172.20.0.4

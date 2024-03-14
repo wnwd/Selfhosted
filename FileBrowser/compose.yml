@@ -1,0 +1,18 @@
+version: "3"
+networks:
+  default:
+    external: true
+    name: npm_default
+services:
+  app:
+    image: filebrowser/filebrowser
+    container_name: filebrowser
+    volumes:
+      - ${DOCKER_HOME}/filebrowser/srv:/srv
+      - ${DOCKER_HOME}/filebrowser/db/filebrowser.db:/database/filebrowser.db
+      - ${DOCKER_HOME}/filebrowser/filebrowser.json:/.filebrowser.json
+      - ${DOCKER_HOME}/filebrowser/branding:/branding
+    restart: unless-stopped
+    networks:
+      default:
+        ipv4_address: 172.20.0.10

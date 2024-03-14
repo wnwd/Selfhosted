@@ -1,0 +1,23 @@
+version: "3"
+networks:
+  default:
+    external: true
+    name: npm_default
+services:
+  dockge:
+    image: louislam/dockge:1
+    restart: unless-stopped
+    container_name: dockge
+    #ports:
+    # Host Port : Container Port
+    # - 5001:5001
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${DOCKER_DATA}/dockge/data:/app/data
+      - ${HOME}/compose:${HOME}/compose
+    environment:
+      # Tell Dockge where is your stacks directory
+      - DOCKGE_STACKS_DIR=${HOME}/compose
+    networks:
+      default:
+        ipv4_address: 172.20.0.13

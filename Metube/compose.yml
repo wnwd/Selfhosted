@@ -1,0 +1,20 @@
+version: "3"
+networks:
+  default:
+    external: true
+    name: npm_default
+services:
+  metube:
+    image: ghcr.io/alexta69/metube
+    container_name: metube
+    restart: unless-stopped
+    #    ports:
+    #      - "8081:8081"
+    environment:
+      - DOWNLOAD_DIR='/downloads'
+      - DELETE_FILE_ON_TRASHCAN=true
+    volumes:
+      - ${DOCKER_DATA}/metube/downloads:/downloads
+    networks:
+      default:
+        ipv4_address: 172.20.0.20
