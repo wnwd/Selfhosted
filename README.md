@@ -1,6 +1,6 @@
-# Compose
+# Selfhosted
 
-本仓库记录了我在VPS中使用docker部署多项服务的compose文件
+本仓库记录了我在VPS中使用docker部署的**自托管**服务的compose文件
 安全起见，服务器**只暴露**ssh端口和80/443端口
 所有的服务通过Nginx反向代理，通过443端口访问，通过不同的域名来区分。
 
@@ -15,7 +15,7 @@ docker network create --subnet=172.20.0.0/24 npm_dafault
 ```
 2. 使用Nginx Proxy Manager来管理所有反向代理
 
-    其中81端口为NPM的管理后台端口，配置好以后也隐藏起来。
+    其中81端口为NPM的管理后台端口，配置好以后也隐藏起来
 
 3. 使用dockage管理compose文件
 
